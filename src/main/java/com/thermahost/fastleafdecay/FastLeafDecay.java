@@ -55,10 +55,10 @@ public final class FastLeafDecay extends JavaPlugin {
         Leaves leaves;
         if(!(block.getBlockData() instanceof Leaves)){
             Bukkit.getLogger().info("Failed to get l e a f");
-            if (((Block) block).getLocation().getWorld() == null) {
+            if (block.getLocation().getWorld() == null) {
                 return false;
             }
-            leaves = (Leaves) ((Block) block).getLocation().getWorld().getBlockAt(block.getLocation()).getBlockData();
+            leaves = (Leaves) block.getLocation().getWorld().getBlockAt(block.getLocation()).getBlockData();
         }else{
             leaves = (Leaves) block.getBlockData();
         }

@@ -2,7 +2,6 @@ package com.thermahost.fastleafdecay.event;
 
 import com.thermahost.fastleafdecay.FastLeafDecay;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -19,17 +18,16 @@ public class BlockBreakEventListener implements Listener {
     */
     @EventHandler(priority = EventPriority.MONITOR)
     public void onBlockBreak(BlockBreakEvent event) {
-        final Block block = event.getBlock();
+        Bukkit.getLogger().info(event.getBlock().toString());
+        final Block block = (Block) event.getBlock();
         int delay;
 
-        //if (Tag.LEAVES.isTagged(block.getType())){
         if (Tag.LEAVES.isTagged(block.getType())){
-            delay = 2;
+            delay = 2; //shut
         }else{
             return;
         }
 
-        //if(Tag.LOGS.isTagged(block.getType())){
         if(Tag.LOGS.isTagged(block.getType())){
             delay = 5;
         }else{
