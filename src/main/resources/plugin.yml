@@ -1,0 +1,7 @@
+name: FastLeafDecay
+version: ${project.version}
+main: com.thermahost.fastleafdecay.FastLeafDecay
+api-version: 1.17
+prefix: FastLeafDecay
+authors: [ LukeOnuke, Pequla ]
+description: Fast leaf decay
