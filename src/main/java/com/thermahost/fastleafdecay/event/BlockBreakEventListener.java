@@ -18,7 +18,7 @@ public class BlockBreakEventListener implements Listener {
     */
     @EventHandler(priority = EventPriority.MONITOR)
     public void onBlockBreak(BlockBreakEvent event) {
-        Bukkit.getLogger().info(event.getBlock().toString());
+
         final Block block = (Block) event.getBlock();
         int delay;
 

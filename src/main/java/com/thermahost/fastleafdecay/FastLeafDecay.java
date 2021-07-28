@@ -44,8 +44,10 @@ public final class FastLeafDecay extends JavaPlugin {
         for (BlockFace blockFace : FACES){
             final Block relativeBlock = block.getRelative(blockFace);
             if(Tag.LEAVES.isTagged(relativeBlock.getType())){
-                Bukkit.getServer().getScheduler().runTaskLater(FastLeafDecay.getPlugin(), ()->{
-                    FastLeafDecay.decayLeaf(relativeBlock);}, delay);
+                    Bukkit.getServer().getScheduler().runTaskLater(FastLeafDecay.getPlugin(), () -> {
+                        FastLeafDecay.decayLeaf(relativeBlock);
+                    }, delay);
+
             }
         }
     }
@@ -53,16 +55,15 @@ public final class FastLeafDecay extends JavaPlugin {
     public static boolean decayLeaf(Block block){
         //TODO: Not randomly break
         Leaves leaves;
-        if(!(block.getBlockData() instanceof Leaves)){
-            Bukkit.getLogger().info("Failed to get l e a f");
-            if (block.getLocation().getWorld() == null) {
-                return false;
-            }
-            leaves = (Leaves) block.getLocation().getWorld().getBlockAt(block.getLocation()).getBlockData();
+        if(((BlockData) block.getBlockData()) instanceof Leaves){
+            leaves = (Leaves) ((BlockData) block.getBlockData());
         }else{
-            leaves = (Leaves) block.getBlockData();
+            return false;
         }
 
+        /*if (block.getBlockData() instanceof Leaves) {
+            leaves = (Leaves) block.getBlockData();
+        }*/
 
 
         if (leaves.isPersistent()) {
