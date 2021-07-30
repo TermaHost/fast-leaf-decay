@@ -34,15 +34,8 @@ public final class FastLeafDecay extends JavaPlugin {
 
     @Override
     public void onDisable() {
-<<<<<<< Updated upstream
         getLogger().info("Plugin disabled");
-=======
         //Who ever uses the /reload command get lost. Jk there is nothing to disable ere
-    }
-
-    public static Plugin getPlugin() {
-        return plugin;
->>>>>>> Stashed changes
     }
 
     public void onBreak(Block block, int delay) {
@@ -57,58 +50,43 @@ public final class FastLeafDecay extends JavaPlugin {
         }
     }
 
-<<<<<<< Updated upstream
-    private void decayLeaf(@NotNull Block block) {
-        //TODO: Not randomly break maybe
-        Leaves leaves;
-        if (((BlockData) block.getBlockData()) instanceof Leaves) {
-            leaves = (Leaves) ((BlockData) block.getBlockData());
-        } else {
-            return;
-=======
-    public static boolean decayLeaf(Block block){
+
+    public void decayLeaf(Block block) {
         //TODO: Not randomly break
         final Logger logger = Bukkit.getLogger();
         Leaves leaves;
-        if(((BlockData) block.getBlockData()) instanceof Leaves){
+        if (((BlockData) block.getBlockData()) instanceof Leaves) {
             logger.info("Sucsess - " + block);
             leaves = (Leaves) ((BlockData) block.getBlockData());
-        }else{
+        } else {
             logger.warning("Faliure - " + block);
-            return false;
->>>>>>> Stashed changes
+            return;
         }
-
-        /*if (block.getBlockData() instanceof Leaves) {
-            leaves = (Leaves) block.getBlockData();
-        }*/
 
 
         if (leaves.isPersistent()) {
             return;
         }
-<<<<<<< Updated upstream
         if (leaves.getDistance() > 6) {
-=======
-        if(leaves.getDistance() > 6){
-            logger.info(ChatColor.AQUA + "Broke leaf" + block);
->>>>>>> Stashed changes
-            block.breakNaturally();
-            block.getWorld().playSound(
-                    block.getLocation(),
-                    Sound.BLOCK_GRASS_BREAK,
-                    SoundCategory.BLOCKS,
-                    0.05f, 1.2f
-            );
-            block.getWorld().spawnParticle(
-                    Particle.BLOCK_DUST,
-                    block.getLocation().add(0.5, 0.5, 0.5),
-                    8, 0.2, 0.2, 0.2, 0,
-                    block.getType().createBlockData()
-            );
-            //To make this recursive like we will call the LeafDecayEvent wich already exists on every leaf decay.
-            LeavesDecayEvent event = new LeavesDecayEvent(block);
-            getServer().getPluginManager().callEvent(event);
+            if (leaves.getDistance() > 6) {
+                logger.info(ChatColor.COLOR_CHAR + "aBroke leaf" + block);
+                block.breakNaturally();
+                block.getWorld().playSound(
+                        block.getLocation(),
+                        Sound.BLOCK_GRASS_BREAK,
+                        SoundCategory.BLOCKS,
+                        0.05f, 1.2f
+                );
+                block.getWorld().spawnParticle(
+                        Particle.BLOCK_DUST,
+                        block.getLocation().add(0.5, 0.5, 0.5),
+                        8, 0.2, 0.2, 0.2, 0,
+                        block.getType().createBlockData()
+                );
+                //To make this recursive like we will call the LeafDecayEvent wich already exists on every leaf decay.
+                LeavesDecayEvent event = new LeavesDecayEvent(block);
+                getServer().getPluginManager().callEvent(event);
+            }
         }
     }
 }
