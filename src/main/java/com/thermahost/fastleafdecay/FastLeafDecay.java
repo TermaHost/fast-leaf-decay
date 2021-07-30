@@ -14,9 +14,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public final class FastLeafDecay extends JavaPlugin {
-    private static final ArrayList<BlockFace> FACES = new ArrayList<>(Arrays.asList(BlockFace.values()));
+    private static final List<BlockFace> FACES = new ArrayList<>(Arrays.asList(BlockFace.values()));
 
     @Override
     public void onEnable() {
@@ -47,13 +48,13 @@ public final class FastLeafDecay extends JavaPlugin {
         }
     }
 
-    private boolean decayLeaf(@NotNull Block block) {
-        //TODO: Not randomly break
+    private void decayLeaf(@NotNull Block block) {
+        //TODO: Not randomly break maybe
         Leaves leaves;
         if (((BlockData) block.getBlockData()) instanceof Leaves) {
             leaves = (Leaves) ((BlockData) block.getBlockData());
         } else {
-            return false;
+            return;
         }
 
         /*if (block.getBlockData() instanceof Leaves) {
@@ -62,7 +63,7 @@ public final class FastLeafDecay extends JavaPlugin {
 
 
         if (leaves.isPersistent()) {
-            return false;
+            return;
         }
         if (leaves.getDistance() > 6) {
             block.breakNaturally();
@@ -80,9 +81,7 @@ public final class FastLeafDecay extends JavaPlugin {
             );
             //To make this recursive like we will call the LeafDecayEvent wich already exists on every leaf decay.
             LeavesDecayEvent event = new LeavesDecayEvent(block);
-            Bukkit.getServer().getPluginManager().callEvent(event);
-            return true;
+            getServer().getPluginManager().callEvent(event);
         }
-        return false;
     }
 }
