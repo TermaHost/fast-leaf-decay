@@ -8,16 +8,23 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class BlockBreakEventListener implements Listener {
 
+    private final FastLeafDecay plugin;
+
+    public BlockBreakEventListener(FastLeafDecay plugin) {
+        this.plugin = plugin;
+    }
+
     /*
-    Monitor event is used to optimise "snappiness" of block breaking in the
-    long term, as it is the lowest priority, so user block interaction is done
-    by the time this event handler is called.
-    */
+        Monitor event is used to optimise "snappiness" of block breaking in the
+        long term, as it is the lowest priority, so user block interaction is done
+        by the time this event handler is called.
+        */
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onBlockBreak(BlockBreakEvent event) {
+    public void onBlockBreak(@NotNull BlockBreakEvent event) {
 
         final Block block = (Block) event.getBlock();
         int delay;
@@ -34,6 +41,6 @@ public class BlockBreakEventListener implements Listener {
             return;
         }
 
-        FastLeafDecay.onBreak(block, delay);
+        plugin.onBreak(block, delay);
     }
 }
