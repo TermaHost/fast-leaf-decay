@@ -15,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 public final class FastLeafDecay extends JavaPlugin {
     private static final List<BlockFace> FACES = new ArrayList<>(Arrays.asList(BlockFace.values()));
@@ -33,7 +34,15 @@ public final class FastLeafDecay extends JavaPlugin {
 
     @Override
     public void onDisable() {
+<<<<<<< Updated upstream
         getLogger().info("Plugin disabled");
+=======
+        //Who ever uses the /reload command get lost. Jk there is nothing to disable ere
+    }
+
+    public static Plugin getPlugin() {
+        return plugin;
+>>>>>>> Stashed changes
     }
 
     public void onBreak(Block block, int delay) {
@@ -48,6 +57,7 @@ public final class FastLeafDecay extends JavaPlugin {
         }
     }
 
+<<<<<<< Updated upstream
     private void decayLeaf(@NotNull Block block) {
         //TODO: Not randomly break maybe
         Leaves leaves;
@@ -55,6 +65,18 @@ public final class FastLeafDecay extends JavaPlugin {
             leaves = (Leaves) ((BlockData) block.getBlockData());
         } else {
             return;
+=======
+    public static boolean decayLeaf(Block block){
+        //TODO: Not randomly break
+        final Logger logger = Bukkit.getLogger();
+        Leaves leaves;
+        if(((BlockData) block.getBlockData()) instanceof Leaves){
+            logger.info("Sucsess - " + block);
+            leaves = (Leaves) ((BlockData) block.getBlockData());
+        }else{
+            logger.warning("Faliure - " + block);
+            return false;
+>>>>>>> Stashed changes
         }
 
         /*if (block.getBlockData() instanceof Leaves) {
@@ -65,7 +87,12 @@ public final class FastLeafDecay extends JavaPlugin {
         if (leaves.isPersistent()) {
             return;
         }
+<<<<<<< Updated upstream
         if (leaves.getDistance() > 6) {
+=======
+        if(leaves.getDistance() > 6){
+            logger.info(ChatColor.AQUA + "Broke leaf" + block);
+>>>>>>> Stashed changes
             block.breakNaturally();
             block.getWorld().playSound(
                     block.getLocation(),
